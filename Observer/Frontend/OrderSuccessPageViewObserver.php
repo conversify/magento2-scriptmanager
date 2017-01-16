@@ -80,7 +80,7 @@ class OrderSuccessPageViewObserver implements ObserverInterface
 
         $block = $this->_layout->getBlock('cfy_data');
         if ($block) {
-            $this->setModelData(
+            $block->setModelData(
                 'conversion', intval(round($conversionValue * 100, 0)));
 
             if ($contents) {

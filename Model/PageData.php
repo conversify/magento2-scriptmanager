@@ -120,7 +120,7 @@ class PageData extends \Magento\Framework\DataObject
                 case 'checkout_onepage_success':
                     return self::CHECKOUT_SUCCESS;
             }
-        } catch (Exception $e) {}
+        } catch (\Exception $e) {}
 
         if (stripos($_SERVER['REQUEST_URI'], '/onestepcheckout') !== false) {
             return self::CHECKOUT_PROCESS;

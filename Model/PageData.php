@@ -24,7 +24,7 @@ class PageData extends \Magento\Framework\DataObject
 {
     const PRODUCT          = 'product';
     const INDEX            = 'index';
-    const LIST             = 'list';
+    const PLIST            = 'list';
     const CHECKOUT_PROCESS = 'checkout_process';
     const CHECKOUT_SUCCESS = 'checkout_success';
     const CART             = 'shoppingcart';
@@ -111,7 +111,7 @@ class PageData extends \Magento\Framework\DataObject
                 case 'cms_index_index';
                     return self::INDEX;
                 case 'catalog_category_view':
-                    return $this->_coreRegistry->registry('current_category') ? self::LIST : self::MISC;
+                    return $this->_coreRegistry->registry('current_category') ? self::PLIST : self::MISC;
                 case 'catalog_product_view':
                     return $this->_coreRegistry->registry('current_product') ?
                         self::PRODUCT : self::MISC;

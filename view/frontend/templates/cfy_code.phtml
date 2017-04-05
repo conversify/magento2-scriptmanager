@@ -5,14 +5,6 @@
 ?>
 <!-- Conversify API code -->
 <script type="text/javascript">
-    Conversify = window.Conversify || [];
-    Conversify.api_key = "<?php echo $block->getApiKey(); ?>";
-
-    (function(d,e,c,cn,f,cfy,p) {
-        f=d.cookie.split(cn)[1];f=f?f.split(';')[0]:'';
-        cfy=d.createElement("script");cfy.type="text/javascript";cfy.async=true;
-        cfy.src='//js.conversify.com/v2/'+e(c.api_key)+'.js';
-        (d.getElementsByTagName('head')[0]||d.getElementsByTagName('body')[0]).appendChild(cfy);
-    })(document, window.encodeURIComponent, Conversify, "__conversify_uid=");
+    require([<?php echo "'//js.conversify.com/v2/".$block->getApiKey().".js'";?>]);
 </script>
 <!-- End Conversify API code -->

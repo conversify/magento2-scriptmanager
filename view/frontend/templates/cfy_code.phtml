@@ -5,6 +5,10 @@
 ?>
 <!-- Conversify API code -->
 <script type="text/javascript">
-    require([<?php echo "'//js.conversify.com/v2/".$block->getApiKey().".js'";?>]);
+    require.config({
+        paths: {
+            cfybase: <?php echo "'//js.conversify.com/v2/".$block->getApiKey()."'"?>
+        }
+    });
 </script>
 <!-- End Conversify API code -->

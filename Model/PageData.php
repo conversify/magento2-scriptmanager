@@ -96,8 +96,7 @@ class PageData extends \Magento\Framework\DataObject
 
         $this->setPageTypeData()
              ->setProductData()
-             ->setCartData()
-             ->setLastOrderData();
+             ->setCartData();
     }
 
     /**
@@ -193,62 +192,6 @@ class PageData extends \Magento\Framework\DataObject
             'logged_in' => $this->_customerSession->isLoggedIn(),
             'contents' => $contents
         ));
-    }
-
-    /**
-     * Set last ordered data
-     *
-     * @return $this
-     */
-    protected function setLastOrderData() {
-        $_product = $this->_coreRegistry->registry('product');
-        if ($this->getPageType() === self::PRODUCT
-            && $_productId = $_product->getId()) {
-            $_productLastOrder = $this->getLastOrder(array(
-                'product_id' => $_productId
-            ));
-
-            if ($_productLastOrder) {
-                $this->setData('product_last_order', $_productLastOrder);
-            }
-        }
-
-        $_lastOrder = $this->getLastOrder();
-        if ($_lastOrder) {
-            $this->setData('last_order', $_lastOrder);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Get an order items collection
-     *
-     * @param array $filters
-     * @return \Magento\Sales\Model\ResourceModel\Order\Collection
-     */
-    protected function getOrderCollection(array $filters=[]) {
-        $_itemCollection = $this->_itemOrderFactory->create();
-        $_itemCollection->addAttributeToSort('created_at', 'desc');
-
-        foreach ($filters as $field => $condition) {
-            $_itemCollection->addFieldToFilter($field, $condition);
-        }
-
-        return $_itemCollection;
-    }
-
-    /**
-     * Get last order
-     *
-     * @param array $filters
-     * @return \Magento\Sales\Model\Order | void
-     */
-    protected function getLastOrder(array $filters=[]) {
-        $_order = $this->getOrderCollection($filters)->getFirstItem();
-        if ($_order) {
-            return strtotime($_order->getCreatedAt());
-        }
     }
 
     /**

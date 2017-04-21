@@ -18,7 +18,6 @@ use \Magento\Framework\App\Config\ScopeConfigInterface;
 use \Magento\Customer\Model\Session as CustomerSession;
 use \Magento\Checkout\Model\Session as CheckoutSession;
 use \Magento\CatalogInventory\Model\Stock\StockItemRepository;
-use \Magento\Sales\Model\ResourceModel\Order\Item\CollectionFactory;
 
 class PageData extends \Magento\Framework\DataObject
 {
@@ -66,11 +65,6 @@ class PageData extends \Magento\Framework\DataObject
     protected $_stockItemRepository = null;
 
     /**
-     * @var \Magento\Sales\Model\ResourceModel\Order\Item\CollectionFactory
-     */
-    protected $_itemOrderFactory = null;
-
-    /**
      * @var string
      */
     protected $fullActionName = null;
@@ -81,7 +75,6 @@ class PageData extends \Magento\Framework\DataObject
         CustomerSession $customerSession,
         CheckoutSession $checkoutSession,
         StockItemRepository $stockItemRepository,
-        CollectionFactory $itemOrderFactory,
         Registry $registry
     ) {
         $this->_scopeConfig = $scopeConfig;
@@ -90,7 +83,6 @@ class PageData extends \Magento\Framework\DataObject
         $this->_coreRegistry = $registry;
         $this->_checkoutSession = $checkoutSession;
         $this->_stockItemRepository = $stockItemRepository;
-        $this->_itemOrderFactory = $itemOrderFactory;
 
         $this->fullActionName = $this->_context->getRequest()->getFullActionName();
 

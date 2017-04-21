@@ -5,6 +5,9 @@
 ?>
 <!-- Conversify API code -->
 <script type="text/javascript">
+    Conversify = window.Conversify || [];
+    Conversify.api_key = <?php echo "'".$block->getApiKey()."'" ?>;
+
     require.config({
         paths: {
             cfybase: <?php echo "'//js.conversify.com/v2/".$block->getApiKey()."'"?>

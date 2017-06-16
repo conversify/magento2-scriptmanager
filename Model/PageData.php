@@ -17,7 +17,7 @@ use \Magento\Framework\App\Action\Context;
 use \Magento\Framework\App\Config\ScopeConfigInterface;
 use \Magento\Customer\Model\Session as CustomerSession;
 use \Magento\Checkout\Model\Session as CheckoutSession;
-use \Magento\CatalogInventory\Model\Stock\StockItemRepository;
+use \Magento\CatalogInventory\Api\StockRegistryInterface;
 
 class PageData extends \Magento\Framework\DataObject
 {
@@ -60,9 +60,9 @@ class PageData extends \Magento\Framework\DataObject
     protected $_checkoutSession = null;
 
     /**
-     * @var \Magento\CatalogInventory\Model\Stock\StockItemRepository
+     * @var \Magento\CatalogInventory\Api\StockRegistryInterface
      */
-    protected $_stockItemRepository = null;
+    protected $_stockRegistryInterface = null;
 
     /**
      * @var string
@@ -74,7 +74,7 @@ class PageData extends \Magento\Framework\DataObject
         ScopeConfigInterface $scopeConfig,
         CustomerSession $customerSession,
         CheckoutSession $checkoutSession,
-        StockItemRepository $stockItemRepository,
+        StockRegistryInterface $stockRegistryInterface,
         Registry $registry
     ) {
         $this->_scopeConfig = $scopeConfig;
@@ -82,7 +82,7 @@ class PageData extends \Magento\Framework\DataObject
         $this->_context = $context;
         $this->_coreRegistry = $registry;
         $this->_checkoutSession = $checkoutSession;
-        $this->_stockItemRepository = $stockItemRepository;
+        $this->_stockRegistryInterface = $stockRegistryInterface;
 
         $this->fullActionName = $this->_context->getRequest()->getFullActionName();
 
@@ -142,7 +142,8 @@ class PageData extends \Magento\Framework\DataObject
         if($this->fullActionName === 'catalog_product_view'
            && $_product = $this->_coreRegistry->registry('current_product')
         ) {
-            $_stockInfo = $this->_stockItemRepository->get($_product->getId());
+            $_stockInfo = $this->_stockRegistryInterface
+                               ->getStockItem($_product->getId());
             $product = [];
             $product['id'] = $_product->getId();
             $product['sku'] = $_product->getSku();

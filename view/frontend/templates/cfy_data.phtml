@@ -7,7 +7,7 @@
 <script type="text/javascript">
     Conversify = window.Conversify || [];
     try {
-        _cfy_data = JSON.parse('<?php echo json_encode($block->getModelData()); ?>');
+        _cfy_data = JSON.parse(atob('<?php echo base64_encode(json_encode($block->getModelData())); ?>'));
         for (k in _cfy_data) {
             console.log(k);
             if (k == 'conversion') {

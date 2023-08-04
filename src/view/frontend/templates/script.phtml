@@ -1,0 +1,31 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * @var Script $block
+ * @var Escaper $escaper
+ */
+
+use Conversify\ScriptManager\Block\Script;
+use Magento\Framework\Escaper;
+
+?>
+<script type="application/javascript">
+    <!-- Conversify API code -->
+    Conversify = window.Conversify || [];
+    Conversify.api_key = '<?= $escaper->escapeJs($block->getApiKey()) ?>';
+    Conversify.pagetype = '<?= $escaper->escapeJs($block->getPageType()) ?>';
+
+    <?php if ($block->getEnableSearch()): ?>
+    Conversify.search = {'ui_id': '<?= $escaper->escapeJs($block->getConversifyUiId()) ?>'};
+    <?php endif ?>
+
+    (function(d,e,c,cn,f,cfy,p) {
+        f=d.cookie.split(cn)[1];f=f?f.split(';')[0]:'';
+        p=c.product&& c.product.id?c.product.id:'';
+        cfy=d.createElement("script");cfy.type="application/javascript";cfy.async=true;
+        cfy.src='//js.conversify.com/v2/'+e(c.api_key)+'.js?pt='+e(c.pagetype)+'&ut='+e(f)+'&rf='+e(d.referrer||'')+'&p='+e(p);
+        (d.getElementsByTagName('head')[0]||d.getElementsByTagName('body')[0]).appendChild(cfy);
+    })(document, window.encodeURIComponent, Conversify, "__conversify_uid=");
+</script>

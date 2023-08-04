@@ -1,0 +1,16 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * @var Product $block
+ * @var Escaper $escaper
+ */
+
+use Conversify\ScriptManager\Block\Product;
+use Magento\Framework\Escaper;
+
+?>
+<script type="application/javascript">
+    Conversify.product = <?= /* @noEscape */ json_encode($block->getProductData()) ?>;
+</script>

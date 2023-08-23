@@ -1,0 +1,17 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * @var Success $block
+ * @var Escaper $escaper
+ */
+
+use Conversify\ScriptManager\Block\Success;
+use Magento\Framework\Escaper;
+
+?>
+<script type="application/javascript">
+    Conversify = window.Conversify || [];
+    Conversify.push(['trackConversion', 'Conversion', <?= (int) $block->getConversionValue() ?>]);
+</script>

@@ -4,6 +4,7 @@
     <body>
         <referenceContainer name="after.body.start">
             <block class="Conversify\ScriptManager\Block\Success"
+                   if="scriptmanager/general/active"
                    name="conversify.success"
                    template="Conversify_ScriptManager::success.phtml"
             />

@@ -4,6 +4,7 @@
     <body>
         <referenceContainer name="after.body.start">
             <block class="Conversify\ScriptManager\Block\Product"
+                   if="scriptmanager/general/active"
                    name="conversify.product"
                    template="Conversify_ScriptManager::product.phtml"
             />

@@ -47,6 +47,11 @@
         "youwe/coding-standard-magento2": "^2.0.0",
         "youwe/testing-suite": "^2.17"
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Conversify\\ScriptManager\\Tests\\": "tests"
+        }
+    },
     "archive": {
         "exclude": [
             "/.gitignore",

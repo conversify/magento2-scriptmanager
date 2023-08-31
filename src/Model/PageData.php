@@ -82,7 +82,7 @@ class PageData
         ];
     }
 
-    public function getQuote(): Quote
+    private function getQuote(): Quote
     {
         return $this->checkoutSession->getQuote();
     }

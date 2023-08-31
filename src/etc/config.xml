@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Youwe. All rights reserved.
+ * https://www.youweagency.com
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <scriptmanager>
+            <general>
+                <active>0</active>
+                <apikey/>
+            </general>
+            <search>
+                <enable>0</enable>
+                <ui_id/>
+            </search>
+            <cart_data>
+                <enable>0</enable>
+            </cart_data>
+        </scriptmanager>
+    </default>
+</config>

@@ -14,45 +14,25 @@ use Conversify\ScriptManager\Model\Config;
 use Conversify\ScriptManager\Model\PageData;
 use Magento\Framework\View\Element\Template;
 
-class Script extends Template
+class Cart extends Template
 {
     public function __construct(
         Template\Context $context,
+        private PageData $pageData,
         private Config $config,
-        private PageData $dataModel,
         array $data = []
     ) {
         parent::__construct($context, $data);
     }
 
-    public function getApiKey(): string
+    public function getCartData(): array
     {
-        return $this->config->getApiKey();
-    }
-
-    public function getPageType(): string
-    {
-        return $this->dataModel->getPageType();
-    }
-
-    public function getEnableSearch(): bool
-    {
-        return $this->config->isSearchEnabled();
-    }
-
-    public function getConversifyUiId(): string
-    {
-        return $this->config->getUiId();
-    }
-
-    private function isEnabled(): bool
-    {
-        return $this->config->isEnabled();
+        return $this->pageData->getCartData();
     }
 
     protected function _toHtml(): string
     {
-        return $this->isEnabled()
+        return $this->config->isCartDataEnabled()
             ? parent::_toHtml()
             : '';
     }

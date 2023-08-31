@@ -1,0 +1,16 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * @var Cart $block
+ * @var Escaper $escaper
+ */
+
+use Conversify\ScriptManager\Block\Cart;
+use Magento\Framework\Escaper;
+
+?>
+<script type="application/javascript">
+    Conversify.cart = <?= /* @noEscape */ json_encode($block->getCartData()) ?>;
+</script>

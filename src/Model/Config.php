@@ -10,15 +10,22 @@ declare(strict_types=1);
 
 namespace Conversify\ScriptManager\Model;
 
+use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Store\Model\ScopeInterface;
 
-class Config extends AbstractHelper
+class Config
 {
+    public function __construct(
+        private ScopeConfigInterface $scopeConfig
+    ) {
+    }
+
     private const XML_PATH_ACTIVE = 'scriptmanager/general/active',
         XML_PATH_APIKEY           = 'scriptmanager/general/apikey',
-        XML_PATH_ENABLE_SEARCH    = 'scriptmanager/search/enable',
-        XML_PATH_UI_ID            = 'scriptmanager/search/ui_id';
+        XML_PATH_SEARCH_ENABLED   = 'scriptmanager/search/enable',
+        XML_PATH_UI_ID            = 'scriptmanager/search/ui_id',
+        XML_PATH_CART_ENABLED     = 'scriptmanager/cart/enable';
 
     public function isEnabled(): bool
     {
@@ -37,10 +44,10 @@ class Config extends AbstractHelper
         );
     }
 
-    public function getEnableSearch(): bool
+    public function isSearchEnabled(): bool
     {
         return $this->scopeConfig->isSetFlag(
-            self::XML_PATH_ENABLE_SEARCH,
+            self::XML_PATH_SEARCH_ENABLED,
             ScopeInterface::SCOPE_STORE
         );
     }
@@ -49,6 +56,14 @@ class Config extends AbstractHelper
     {
         return (string) $this->scopeConfig->getValue(
             self::XML_PATH_UI_ID,
+            ScopeInterface::SCOPE_STORE
+        );
+    }
+
+    public function isCartDataEnabled(): bool
+    {
+        return $this->scopeConfig->isSetFlag(
+            self::XML_PATH_CART_ENABLED,
             ScopeInterface::SCOPE_STORE
         );
     }

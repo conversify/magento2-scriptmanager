@@ -10,12 +10,8 @@ declare(strict_types=1);
 
 namespace Conversify\ScriptManager\Block;
 
-use Conversify\ScriptManager\Model\Config;
-use Conversify\ScriptManager\Model\PageData;
 use Magento\Catalog\Model\Product as ProductModel;
 use Magento\CatalogInventory\Api\StockRegistryInterface;
-use Magento\Checkout\Model\Session;
-use Magento\Cookie\Helper\Cookie as CookieHelper;
 use Magento\Framework\Registry;
 use Magento\Framework\View\Element\Template;
 

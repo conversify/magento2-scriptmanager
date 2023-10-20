@@ -4,7 +4,7 @@
     <body>
         <referenceContainer name="after.body.start">
           <block class="Conversify\ScriptManager\Block\Script"
-                 if="scriptmanager/general/active"
+                 ifconfig="scriptmanager/general/active"
                  name="conversify.script"
                  template="Conversify_ScriptManager::script.phtml"
           />

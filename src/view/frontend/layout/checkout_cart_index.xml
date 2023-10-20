@@ -4,7 +4,7 @@
     <body>
         <referenceContainer name="after.body.start">
             <block class="Conversify\ScriptManager\Block\Cart"
-                   if="scriptmanager/general/active"
+                   ifconfig="scriptmanager/general/active"
                    name="conversify.cart"
                    template="Conversify_ScriptManager::product.phtml"
             />
